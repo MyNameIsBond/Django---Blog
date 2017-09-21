@@ -27,7 +27,6 @@ def home(request):
                 "title" : "I have no clue who you are, please sign up",
                 "msg":"Hello World of django yeeeeeee!",
                 "objectlist" : queryset,}
-    print (queryset.user)
     return render (request,"index.html",hello)
 
 def detail(request, id):

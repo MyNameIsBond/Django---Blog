@@ -17,8 +17,8 @@
                     <p>{{instance.post | linebreaks }}</p><br> 
                     <hr>
                     <div class = "container">
-                        <a  href="{% url 'update' instance.id %}"><button type="button" class="btn btn-primary">Edit</button></a>
-                        <a class="float-right" href="{% url 'delete' instance.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <a  href="{% url 'posts:update' instance.id %}"><button type="button" class="btn btn-primary">Edit</button></a>
+                        <a class="float-right" href="{% url 'posts:delete' instance.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
                         <hr>
                     </div>
                 </table>       

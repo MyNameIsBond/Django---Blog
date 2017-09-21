@@ -17,7 +17,7 @@ class Posts(models.Model):
         return u"%s %s" % (self.title, self.pub_date)
 
     def get_absolute_url(self):
-        return reverse("detail", kwargs= {"id": self.id})
+        return reverse("posts:detail", kwargs= {"id": self.id})
 
     class Meta:
         ordering = ["-pub_date"]

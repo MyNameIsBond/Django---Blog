@@ -16,7 +16,7 @@
                 <a class="nav-link" href="#">Disabled</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href=" {% url "create" %} ">Create Post</a>
+                <a class="nav-link" href=" {% url "posts:create" %} ">Create Post</a>
                 </li>
         </ul>
             <form class="form-inline my-lg-0" method="GET">
@@ -42,7 +42,7 @@
 $(function() {
     $('#search').keyup(function() {
         $.ajax({
-            url: '{% url "search" %}',
+            url: '{% url "posts:search" %}',
             type: "GET",
             data: {
                 'search': $('#search').val(),
