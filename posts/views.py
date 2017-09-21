@@ -1,8 +1,9 @@
-from django.shortcuts import render , get_object_or_404 , redirect
-from .forms           import PostForm
-from .models          import Posts
-from django.http      import HttpResponseRedirect 
-from django.contrib   import messages
+from django.shortcuts       import render , get_object_or_404 , redirect
+from .forms                 import PostForm
+from .models                import Posts
+from django.http            import HttpResponseRedirect 
+from django.contrib         import messages
+from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
 
 
 
@@ -17,6 +18,16 @@ def home(request):
             posts = Posts.objects.filter(title__icontains=search)
             return render(request,"search.html",{"posts":posts,"query":search})
     queryset = Posts.objects.all()
+    paginator = Paginator(queryset, 10) # Show 10 contacts per page
+    page      = request.GET.get('page')
+    try:
+        queryset = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        queryset = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        queryset = paginator.page(paginator.num_pages)            
     if request.user.is_authenticated():
         hello = {
                 "title" : "I know who you are, Tony",
@@ -27,6 +38,7 @@ def home(request):
                 "title" : "I have no clue who you are, please sign up",
                 "msg":"Hello World of django yeeeeeee!",
                 "objectlist" : queryset,}
+
     return render (request,"index.html",hello)
 
 def detail(request, id):

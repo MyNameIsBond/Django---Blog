@@ -19,17 +19,43 @@
             <div class=card-columns>
                 {% for obj in objectlist  %}  
                 <div class="card">
-                        <div class="card-body">
+                        <div class="card-body ">
                           <h4 class="card-title"><a href="{{obj.get_absolute_url}}">{{obj.title}}</a></h4>
                           <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p><hr>
-                          <p class="card-text "><small class="text-muted">{{obj.pub_date}} | {{obj.pub_date | timesince}}</small></p>
+                          <p class="card-text "><small class="text-muted">{{obj.pub_date}} | {{obj.pub_date  | timesince}}</small></p>
                           <p>{{ request.user.get_profile.whatever }}</p>
                         </div>
                 </div>             
                     {% endfor %}
             </div>
+            <div class="pagination">
+                    <span class="step-links">
+                        {% if objectlist.has_previous %}
+                            <a href="?page={{ objectlist.previous_page_number }}">previous</a>
+                        {% endif %}
+                
+                        <span class="current">
+                            Page {{ objectlist.number }} of {{ objectlist.paginator.num_pages }}.
+                        </span>
+                
+                        {% if objectlist.has_next %}
+                            <a href="?page={{ objectlist.next_page_number }}">next</a>
+                        {% endif %}
+                    </span>
+                </div>
         </div>
 {% endblock list %}
+<script>
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0],
+            onBeforePageLoad: function () {
+              $('.loading').show();
+            },
+            onAfterPageLoad: function ($items) {
+              $('.loading').hide();
+            }
+          });
+</script>
 
 
 

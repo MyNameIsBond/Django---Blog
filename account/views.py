@@ -1,6 +1,7 @@
 from django.shortcuts       import render , redirect
 from django.http            import HttpResponse
-from .forms                 import (Log_in_form , UserRegisterForm)
+from .forms                 import Log_in_form , UserRegisterForm
+from django.contrib         import messages
 from django.contrib.auth    import ( 
     authenticate,
     get_user_model,
@@ -45,6 +46,7 @@ def register(request):
         user.save() 
         new_user = authenticate(username=user.username, password=password)
         login(request,new_user)
+        messages.success(request,"The User Has Been Created")
         return redirect("base")
         print(request.user)
     content = {
