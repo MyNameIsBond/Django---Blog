@@ -7,8 +7,8 @@ from posts.views             import home
 urlpatterns = [
     url(r'^admin/', admin.site.urls, name ="admin"),
     url(r'^$', home, name ="base"),
-    url(r'^', include('account.urls',namespace="account")),    
-    url(r'^', include('posts.urls',namespace="posts")),    
+    url(r'^', include('account.urls',namespace="account")),
+    url(r'^', include('posts.urls',namespace="posts")),
 ]
 
 if settings.DEBUG:
