@@ -1,0 +1,28 @@
+ <title>Blog | {{instance.title}}</title>
+ <head>
+     {% include "links.html" %}
+ </head>
+    <body>
+        {% include "nav_bar.html" %}
+        {% if messages %}
+        <ul class="messages alert alert-success">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}      
+        <div class = "container jumbotron">           
+                <table>
+                    <h1>{{instance.title}}</h1><p><small> {{instance.pub_date}} | {{instance.pub_date | timesince}}</small></p><br>
+                    <p>{{instance.post | linebreaks }}</p><br> 
+                    <hr>
+                    <div class = "container">
+                        <a  href="{% url 'update' instance.id %}"><button type="button" class="btn btn-primary">Edit</button></a>
+                        <a class="float-right" href="{% url 'delete' instance.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <hr>
+                    </div>
+                </table>       
+                <h4>{{instance.post.user}}</h4>
+            </div>
+    </body>
+    </html>

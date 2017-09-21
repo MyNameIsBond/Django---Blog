@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %}
+{% include "nav_bar.html" %}
+<head>
+
+    {% include "links.html" %}
+    <title>Blog | {{title}} </title>
+</head>
+
+<div class="container jumbotron col-6 col-md-4">
+    <form action="" method="POST">
+        <small>
+            <h2 class="">{{title}}</h2></small>
+        <hr>
+            <h1>hey</h1>
+        {% csrf_token %}
+        {{form | crispy }}
+        <input style="cursor: pointer;" class="btn btn-primary" type="submit" value="{{title}}">
+    </form>
+</div>

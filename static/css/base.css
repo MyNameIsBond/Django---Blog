@@ -1,0 +1,16 @@
+small 
+{
+   color:grey; 
+}
+.messages
+
+{
+    list-style: none;
+    text-align: center;
+    
+}
+
+button
+{
+    cursor: pointer;
+}

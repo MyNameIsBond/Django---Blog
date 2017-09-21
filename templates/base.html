@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        {% include "links.html" %}
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+{% include "nav_bar.html" %}
+{% block list %}
+                        {% if messages %}
+                            <ul class="messages alert alert-danger">
+                                {% for message in messages %}
+                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+        <div class="container jumbotron">               
+            <div class=card-columns>
+                {% for obj in objectlist  %}  
+                <div class="card">
+                        <div class="card-body">
+                          <h4 class="card-title"><a href="{{ obj.get_absolute_url}}">{{obj.title}}</a></h4>
+                          <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p><hr>
+                          <p class="card-text "><small class="text-muted">{{obj.pub_date}} | {{obj.pub_date | timesince}}</small></p>
+                          <p>{{ request.user.get_profile.whatever }}</p>
+                        </div>
+                </div>             
+                    {% endfor %}
+            </div>
+        </div>
+{% endblock list %}
+
+
+
+</body>
+</html>
