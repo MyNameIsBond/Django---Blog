@@ -28,22 +28,11 @@
                 </div>             
                     {% endfor %}
             </div>
-            {% comment %} <div class="pagination">
-                    <span class="step-links">
-                        {% if objectlist.has_previous %}
-                            <a href="?page={{ objectlist.previous_page_number }}">previous</a>
-                        {% endif %}
-                
-                        <span class="current">
-                            Page {{ objectlist.number }} of {{ objectlist.paginator.num_pages }}.
-                        </span>
-                
-                    </span>
-                </div> {% endcomment %}
                 {% if objectlist.has_next %}
-                    <a class="infinite-more-link" href="?page={{ objectlist.next_page_number }}"></a>
-                    {% endif %}
-                    <div class="loading" style="display: none;">Loading...</div>
+                    <a class="infinite-more-link" href="?page={{ objectlist.next_page_number }}">
+                        <div class="loading" style="display: none;">Loading...</div>
+                    </a>
+                {% endif %}
         </div>
         <script>
                 var infinite = new Waypoint.Infinite({
@@ -58,6 +47,5 @@
                   });
         </script>
 {% endblock list %}
-
 </body>
 </html>

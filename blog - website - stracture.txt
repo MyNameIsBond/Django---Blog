@@ -8,7 +8,7 @@
 	a) according to user / followers / 
 	b) grid | Done
 	c) hover : comments / likes / seen
-	d) infinite scroll downn
+	d) infinite scroll downn | Done
 
 3) posts 
 	a) like button / favourites
