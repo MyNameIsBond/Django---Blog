@@ -15,10 +15,10 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
-        <div class="container jumbotron ">               
-            <div class=card-columns>
+        <div class="container jumbotron infinite-container">               
+            <div class="card-columns infinite-item ">
                 {% for obj in objectlist  %}  
-                <div class="card">
+                <div class=" card">
                         <div class="card-body ">
                           <h4 class="card-title"><a href="{{obj.get_absolute_url}}">{{obj.title}}</a></h4>
                           <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p><hr>
@@ -28,7 +28,7 @@
                 </div>             
                     {% endfor %}
             </div>
-            <div class="pagination">
+            {% comment %} <div class="pagination">
                     <span class="step-links">
                         {% if objectlist.has_previous %}
                             <a href="?page={{ objectlist.previous_page_number }}">previous</a>
@@ -38,11 +38,12 @@
                             Page {{ objectlist.number }} of {{ objectlist.paginator.num_pages }}.
                         </span>
                 
-                        {% if objectlist.has_next %}
-                            <a href="?page={{ objectlist.next_page_number }}">next</a>
-                        {% endif %}
                     </span>
-                </div>
+                </div> {% endcomment %}
+                {% if objectlist.has_next %}
+                    <a class="infinite-more-link" href="?page={{ objectlist.next_page_number }}"></a>
+                    {% endif %}
+                    <div class="loading" style="display: none;">Loading...</div>
         </div>
         <script>
                 var infinite = new Waypoint.Infinite({
@@ -52,37 +53,11 @@
                     },
                     onAfterPageLoad: function ($items) {
                       $('.loading').hide();
-                    }
-                  });
-                  $.ajax({
-                    type: 'POST',
-                    url: '{% url "base" %}',
-                    data: {},
-                    beforeSend: function(XMLHttpRequest)
-                    {
-                      //Upload progress
-                      XMLHttpRequest.upload.addEventListener("progress", function(evt){
-                        if (evt.lengthComputable) {  
-                          var percentComplete = evt.loaded / evt.total;
-                          //Do something with upload progress
-                        }
-                      }, false); 
-                      //Download progress
-                      XMLHttpRequest.addEventListener("progress", function(evt){
-                        if (evt.lengthComputable) {  
-                          var percentComplete = evt.loaded / evt.total;
-                          //Do something with download progress
-                        }
-                      }, false); 
-                    },
-                    success: function(data){
-                      //Do something success-ish
+                      console.log(infinite);
                     }
                   });
         </script>
 {% endblock list %}
-
-
 
 </body>
 </html>
