@@ -15,7 +15,7 @@
                                 {% endfor %}
                             </ul>
                         {% endif %}
-        <div class="container jumbotron">               
+        <div class="container jumbotron ">               
             <div class=card-columns>
                 {% for obj in objectlist  %}  
                 <div class="card">
@@ -44,18 +44,43 @@
                     </span>
                 </div>
         </div>
+        <script>
+                var infinite = new Waypoint.Infinite({
+                    element: $('.infinite-container')[0],
+                    onBeforePageLoad: function () {
+                      $('.loading').show();
+                    },
+                    onAfterPageLoad: function ($items) {
+                      $('.loading').hide();
+                    }
+                  });
+                  $.ajax({
+                    type: 'POST',
+                    url: '{% url "base" %}',
+                    data: {},
+                    beforeSend: function(XMLHttpRequest)
+                    {
+                      //Upload progress
+                      XMLHttpRequest.upload.addEventListener("progress", function(evt){
+                        if (evt.lengthComputable) {  
+                          var percentComplete = evt.loaded / evt.total;
+                          //Do something with upload progress
+                        }
+                      }, false); 
+                      //Download progress
+                      XMLHttpRequest.addEventListener("progress", function(evt){
+                        if (evt.lengthComputable) {  
+                          var percentComplete = evt.loaded / evt.total;
+                          //Do something with download progress
+                        }
+                      }, false); 
+                    },
+                    success: function(data){
+                      //Do something success-ish
+                    }
+                  });
+        </script>
 {% endblock list %}
-<script>
-        var infinite = new Waypoint.Infinite({
-            element: $('.infinite-container')[0],
-            onBeforePageLoad: function () {
-              $('.loading').show();
-            },
-            onAfterPageLoad: function ($items) {
-              $('.loading').hide();
-            }
-          });
-</script>
 
 
 

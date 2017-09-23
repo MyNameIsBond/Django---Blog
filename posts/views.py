@@ -29,15 +29,9 @@ def home(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)            
     if request.user.is_authenticated():
-        hello = {
-                "title" : "I know who you are, Tony",
-                "msg":"Hello World of django yeeeeeee!",
-                "objectlist" : queryset,}
+        hello = { "objectlist" : queryset,}
     else:
-        hello = {
-                "title" : "I have no clue who you are, please sign up",
-                "msg":"Hello World of django yeeeeeee!",
-                "objectlist" : queryset,}
+        hello = { "objectlist" : queryset,}
 
     return render (request,"index.html",hello)
 
