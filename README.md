@@ -11,9 +11,9 @@ holy moly
   
 	*
 
-2) home
+2) home*
 
- a) according to user / followers / 
+ a) according to user / followers  
  
 	* grid | Done
   
@@ -44,10 +44,10 @@ holy moly
 
 5) pages
 
-	a) register /log in | Done
+	* register /log in | Done
   
-	b) profile / settings / your own posts 
+	* profile / settings / your own posts 
   
-	c) home | Done
+	* home | Done
   
-	d) 
+	* 
