@@ -1,6 +1,7 @@
 from django.shortcuts       import render , redirect
 from django.http            import HttpResponse
 from .forms                 import Log_in_form , UserRegisterForm
+from django.contrib.auth.forms  import UserCreationForm
 from django.contrib         import messages
 from django.contrib.auth    import ( 
     authenticate,
@@ -15,7 +16,7 @@ def profile(request):
         "world" : world,
     }
     return render (request, "profile.html", content)
-
+# ----------------------------->Log in< -----------------------------#
 def log_in(request):
     title = "Login"
     form = Log_in_form(request.POST or None)
@@ -36,15 +37,15 @@ def log_out(request):
     logout(request)
     return redirect("base")
 def register(request):
-    print(request.user.is_authenticated())
     title = "Register"
     form = UserRegisterForm(request.POST or None)
     if form.is_valid():
         user     = form.save(commit=False)
         password = form.cleaned_data.get("password")
-        user.set_password(password)
+        # user.set_password(password)
         user.save() 
         new_user = authenticate(username=user.username, password=password)
+        print(user.password)
         login(request,new_user)
         messages.success(request,"The User Has Been Created")
         return redirect("base")

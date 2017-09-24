@@ -1,10 +1,11 @@
-from django              import forms
-from django.contrib.auth import ( 
-                                  authenticate,
-                                  get_user_model,
-                                  login,
-                                  logout,)
-
+from django                     import forms
+from django.contrib.auth.forms  import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth        import ( 
+                                         authenticate,
+                                         get_user_model,
+                                         login,
+                                         logout,)
 User = get_user_model()
 
 class Log_in_form(forms.Form):
@@ -25,20 +26,21 @@ class Log_in_form(forms.Form):
                 raise forms.ValidationError("This User is no longer active")
         return super(Log_in_form,self).clean(*args,**kwargs)
 
-
-
-class UserRegisterForm(forms.ModelForm):
+class UserRegisterForm(UserCreationForm):
     """Form definition for UserRegister."""
     email       = forms.EmailField(label="Email Adress")
     email2      = forms.EmailField(label="Comfirm Email")
-    password    = forms.CharField(widget=forms.PasswordInput)
+    # password    = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         """Meta definition for UserRegisterform."""
         model  = User
-        fields = ('username',
-                  'password',
+        fields = ('first_name',
+                  'last_name',
+                  'username',
                   'email',
-                  "email2"   )
+                  "email2",
+                  "password1",
+                  "password2" )
 
     def clean_email2(self):
         email2  = self.cleaned_data.get("email2")

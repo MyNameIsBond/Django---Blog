@@ -1,4 +1,3 @@
-
 #A Django based Blog. 
 holy moly
 1) user 
