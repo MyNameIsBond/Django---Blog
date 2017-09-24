@@ -1,5 +1,6 @@
 
 #A Django based Blog. 
+holy moly
 1) user 
 
 	a) register / log in / log out | Done
