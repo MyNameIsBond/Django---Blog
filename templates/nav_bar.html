@@ -30,8 +30,8 @@
                 {% if request.user.is_authenticated %}
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user}}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="{% url "account:log_out"%}">Log out</a>
                         <a class="dropdown-item" href="{% url "account:profile"%}">Profile</a>
+                        <a class="dropdown-item" href="{% url "account:log_out"%}">Log out</a>
                         </div>
                 {% else %}
                 <a class="" href="{% url "account:log_in" %}">Log in</a> | <a href="{% url "account:register" %}">Register</a>    

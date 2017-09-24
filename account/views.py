@@ -30,6 +30,7 @@ def log_in(request):
         user = authenticate(username=username, password=password)
         login (request, user)
         print(user)
+        messages.success(request,"You have logged in.")
         return redirect( "base" )
     return render (request, "log_in.html", content)
 
@@ -41,15 +42,14 @@ def register(request):
     form = UserRegisterForm(request.POST or None)
     if form.is_valid():
         user     = form.save(commit=False)
-        password = form.cleaned_data.get("password")
-        # user.set_password(password)
+        password = form.cleaned_data.get("password1")
+        user.set_password(password)
         user.save() 
         new_user = authenticate(username=user.username, password=password)
-        print(user.password)
         login(request,new_user)
-        messages.success(request,"The User Has Been Created")
-        return redirect("base")
+        messages.success(request,"Welcome, %s , enjoy." %request.user)
         print(request.user)
+        return redirect("base")
     content = {
         "title" : title ,
         "form" : form
