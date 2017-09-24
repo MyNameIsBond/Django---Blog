@@ -11,9 +11,9 @@ holy moly
   
 	*
 
-2) home*
+2) home
 
- a) according to user / followers  
+	* according to user / followers  
  
 	* grid | Done
   
