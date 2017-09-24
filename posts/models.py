@@ -7,7 +7,7 @@ from django.conf                import settings
 
 
 class Posts(models.Model):
-    # user     =   models.ForeignKey(Profile)
+    # user     =   models.ForeignKey(User)
     title    =   models.CharField(max_length=30, blank=False, null=True)
     post     =   models.TextField()
     pub_date =   models.DateField(null=True,auto_now_add=True)

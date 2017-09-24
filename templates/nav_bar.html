@@ -15,9 +15,11 @@
                 <li class="nav-item">
                 <a class="nav-link" href="#">Disabled</a>
                 </li>
+                {% if request.user.is_authenticated %}
                 <li class="nav-item">
-                <a class="nav-link" href=" {% url "posts:create" %} ">Create Post</a>
+                    <a class="nav-link" href=" {% url "posts:create" %} ">Create Post</a>
                 </li>
+                {% endif %}
         </ul>
             <form class="form-inline my-lg-0" method="GET">
                 {% csrf_token %}
@@ -25,15 +27,15 @@
                 {% comment %} <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> {% endcomment %}
             </form>
             <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    {% if request.user.is_authenticated %}
-                    <a class="dropdown-item" href="{% url "account:log_out"%}">Log out</a>
-                      {% else %}
-                      <a class="dropdown-item" href="{% url "account:log_in"%}">Log In </a>
-                      <a class="dropdown-item" href="{% url "account:register"%}">Register</a>
-                    {% endif %}
-                </div>
+                {% if request.user.is_authenticated %}
+                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{request.user}}</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url "account:log_out"%}">Log out</a>
+                        <a class="dropdown-item" href="{% url "account:profile"%}">Profile</a>
+                        </div>
+                {% else %}
+                <a class="" href="{% url "account:log_in" %}">Log in</a> | <a href="{% url "account:register" %}">Register</a>    
+                {% endif %}
             </div>
         </div>
 </nav>
@@ -42,6 +44,9 @@
 
 {% comment %}================> Search Content JS / Ajax <================ {% endcomment %}
 <script>
+        $(document).ready(function(){
+            $(".dropdown-toggle").dropdown();
+        });
 $(function() {
     $('#search').keyup(function() {
         $.ajax({

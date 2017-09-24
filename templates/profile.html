@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+     {% include "links.html" %}
+     <title>{{request.user.usrename}}</title>
+    </head>
+    <body>
+            {% include "nav_bar.html" %}
 <h3> {{hello}} </h3>
 <h3> {{world}} </h3>
+<ul>
+    <li> {{request.user}} </li>
+    <li> {{request.user.email}} </li>
+</ul>
 </body>
 </html>
