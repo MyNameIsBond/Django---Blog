@@ -1,13 +1,13 @@
-from django.shortcuts       import render , redirect
-from django.http            import HttpResponse
-from .forms                 import Log_in_form , UserRegisterForm
+from django.shortcuts           import render , redirect
+from django.http                import HttpResponse
+from .forms                     import Log_in_form , UserRegisterForm
 from django.contrib.auth.forms  import UserCreationForm
-from django.contrib         import messages
-from django.contrib.auth    import ( 
-    authenticate,
-    get_user_model,
-    login,
-    logout,)
+from django.contrib             import messages
+from django.contrib.auth        import ( 
+                                        authenticate,
+                                        get_user_model,
+                                        login,
+                                        logout,)
 
 def profile(request):
     world = "HEEEEEEEY!"
@@ -55,3 +55,16 @@ def register(request):
         "form" : form
     }
     return render (request, "log_in.html", content)
+
+
+def edit_profile(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect(profile)
+    else:
+        form = UserCreationForm(instance=request.user)
+        content = {"form":form}
+        return (request, "edit",content)
+        
