@@ -4,7 +4,7 @@ holy moly
 
 	* register / log in / log out | Done
   
-	* followers / following
+	* followers / following 
   
 	*
   
