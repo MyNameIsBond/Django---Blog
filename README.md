@@ -33,7 +33,7 @@ holy moly
 
 4) not user procedure
 
-	- [ ]  direct to a register page 
+	- [X]  direct to a register page 
   
 	- [ ]  able to connect with fb / twitter 
   
@@ -43,10 +43,10 @@ holy moly
 
 5) pages
 
-	- [ ]  register /log in | Done
+	- [X]  register /log in | Done
   
 	- [ ]  profile / settings / your own posts 
   
-	- [ ]  home | Done
+	- [X]  home | Done
   
 	- [ ]  
