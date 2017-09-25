@@ -2,7 +2,7 @@
 holy moly
 1) user 
 
-	- [ ]  register / log in / log out | Done
+	- [X]  register / log in / log out | Done
   
 	- [ ]  followers / following 
   
