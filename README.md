@@ -14,7 +14,7 @@ holy moly
 
 	- [ ]  according to user / followers  
  
-	- [ ]  grid | Done
+	- [X]  grid | Done
   
 	- [ ]  hover : comments / likes / seen
   
