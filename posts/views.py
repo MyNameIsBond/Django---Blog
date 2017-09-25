@@ -17,16 +17,15 @@ def home(request):
         else:
             posts = Posts.objects.filter(title__icontains=search)
             return render(request,"search.html",{"posts":posts,"query":search})
-    queryset = Posts.objects.all()
-    paginator = Paginator(queryset, 10) # Show 10 contacts per page
+    queryset  = Posts.objects.all()
+    #----------- Pagination -----------
+    paginator = Paginator(queryset, 10) # Show 10 contacts per page 
     page      = request.GET.get('page')
     try:
         queryset = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
+    except PageNotAnInteger: 
         queryset = paginator.page(1)
     except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
         queryset = paginator.page(paginator.num_pages)            
     if request.user.is_authenticated():
         hello = { "objectlist" : queryset,}
@@ -39,7 +38,7 @@ def detail(request, id):
     """ Post Preview """ 
     instance = get_object_or_404(Posts, id=id)
     title = "Detail View"
-    context = {
+    context  = {
         "title" : instance.title,
         "instance" : instance
     }
@@ -84,7 +83,6 @@ def delete_post (request, id=None):
     instance.delete()
     messages.success(request," Post has been deleted")
     return redirect("base")
-
 
 #----------------------------------- Search -----------------------------------#
 def search(request):
