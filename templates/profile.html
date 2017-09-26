@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <head>
      {% include "links.html" %}
-     <title>{{request.user.usrename}}</title>
+     <title>{{request.user}}</title>
     </head>
     <body>
             {% include "nav_bar.html" %}
-<h3> {{hello}} </h3>
-<h3> {{world}} </h3>
-<ul>
-    <li> {{request.user}} </li>
-    <li> {{request.user.email}} </li>
-    <li> {{request.user.first_name}} </li>
-    <li> {{request.user.last_name}} </li>
-    <li></li>
-</ul>
+            {% if messages %}
+            <ul class="messages alert alert-success">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+<div class="container jumbotron">
+
+    <h3> {{hello}} </h3>
+    <h3> {{world}} </h3>
+    <ul>
+        <li> {{request.user}} </li>
+        <li> {{request.user.email}} </li>
+        <li> {{request.user.first_name}} </li>
+        <li> {{request.user.last_name}} </li>
+        <li><a href="{% url "account:edit" %}">edit</a></li>
+    </ul>
+</div>
 </body>
 </html>

@@ -1,14 +1,13 @@
 from django.shortcuts           import render , redirect
 from django.http                import HttpResponse
-from .forms                     import Log_in_form , UserRegisterForm
-from django.contrib.auth.forms  import UserCreationForm
+from django.contrib.auth.forms  import (UserCreationForm , UserChangeForm)
 from django.contrib             import messages
-from django.contrib.auth        import ( 
-                                        authenticate,
+from django.contrib.auth        import (authenticate,
                                         get_user_model,
                                         login,
                                         logout,)
-
+from .forms                     import Log_in_form,UserRegisterForm,EditProfile
+# ---------------------------- >Profile View< ----------------------------#
 def profile(request):
     world = "HEEEEEEEY!"
     content = {
@@ -16,7 +15,23 @@ def profile(request):
         "world" : world,
     }
     return render (request, "profile.html", content)
-# ----------------------------->Log in< -----------------------------#
+
+
+def edit_profile(request):
+    content = { "title": "Change Profile" }
+    if request.method == "POST":
+        form = EditProfile(request.POST, instance=request.user)
+        if form.is_valid():
+            messages.success(request,"Your changes, %s, have been saved." %request.user)
+            form.save()
+            return redirect("account:profile")
+    else:
+        form = EditProfile(instance=request.user)
+        content = {"form":form, "title": "Change Profile"}
+        return render(request, "edit.html",content)
+    return render(request, "edit.html")
+
+# -------------------------- >Log in , Log out< --------------------------#
 def log_in(request):
     title = "Login"
     form = Log_in_form(request.POST or None)
@@ -30,7 +45,7 @@ def log_in(request):
         user = authenticate(username=username, password=password)
         login (request, user)
         print(user)
-        messages.success(request,"You have logged in.")
+        messages.success(request,"%s, have logged in." %request.user)
         return redirect( "base" )
     return render (request, "log_in.html", content)
 
@@ -55,16 +70,3 @@ def register(request):
         "form" : form
     }
     return render (request, "log_in.html", content)
-
-
-def edit_profile(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
-            return redirect(profile)
-    else:
-        form = UserCreationForm(instance=request.user)
-        content = {"form":form}
-        return (request, "edit",content)
-        

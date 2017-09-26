@@ -1,3 +1,14 @@
 {% load crispy_forms_tags %}
-{% include "nav_bar.html" %}
-{% include "log_in" %}
+{% include "log_in.html" %}
+<head>
+
+    {% include "links.html" %}
+    <title>Blog | {{title}} </title>
+</head>
+{% if messages %}
+<ul class="messages alert alert-success">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}  
