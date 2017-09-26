@@ -27,7 +27,7 @@ def edit_profile(request):
             return redirect("account:profile")
     else:
         form = EditProfile(instance=request.user)
-        content = {"form":form, "title": "Change Profile"}
+        content = {"form":form, "title": "Edit Profile"}
         return render(request, "edit.html",content)
     return render(request, "edit.html")
 
