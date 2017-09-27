@@ -70,3 +70,6 @@ def register(request):
         "form" : form
     }
     return render (request, "log_in.html", content)
+
+
+# I hope this time work
