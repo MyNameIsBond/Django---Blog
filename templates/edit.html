@@ -1,7 +1,6 @@
 {% load crispy_forms_tags %}
 {% include "log_in.html" %}
 <head>
-
     {% include "links.html" %}
     <title>Blog | {{title}} </title>
 </head>
@@ -11,4 +10,4 @@
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
 </ul>
-{% endif %}  
+{% endif %}

@@ -22,6 +22,7 @@
         <li> {{request.user.first_name}} </li>
         <li> {{request.user.last_name}} </li>
         <li><a href="{% url "account:edit" %}">edit</a></li>
+        <li><a href="{% url "account:edit-password" %}">edit password</a></li>
     </ul>
 </div>
 </body>
