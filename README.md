@@ -1,6 +1,6 @@
 #A Django based Blog. 
 holy moly
-1) user 
+#user 
 
 	- [X]  register / log in / log out | Done
   
@@ -10,7 +10,7 @@ holy moly
   
 	- [ ] 
 
-2) home
+#home
 
 	- [ ]  according to user / followers  
  
@@ -21,7 +21,7 @@ holy moly
 	- [ ]  infinite scroll downn
   
 
-3) posts 
+#posts 
 
 	- [ ]  like button / favourites
   
@@ -31,7 +31,7 @@ holy moly
   
 	- [ ]  at the end of the post carry on another post or arrows 
 
-4) not user procedure
+#not user procedure
 
 	- [X]  direct to a register page 
   
@@ -41,7 +41,7 @@ holy moly
   
 	- [ ] 
 
-5) pages
+#pages
 
 	- [X]  register /log in | Done
   
