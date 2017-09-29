@@ -70,6 +70,9 @@ def edit_password(request):
             form.save()
             update_session_auth_hash(request,form.user)
             return redirect("account:profile")
+        else:
+            messages.error(request,"Something went wrong, try again.")
+            redirect("edit.html")
     else:
         form = PasswordChangeForm(user=request.user)
         content = {"form":form, "title":"Change Password"}

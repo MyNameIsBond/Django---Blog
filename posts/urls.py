@@ -1,9 +1,5 @@
-from django.conf.urls import url
-from .views import  (detail      , 
-                    create_post , 
-                    update_post , 
-                    delete_post ,
-                    search      ,)
+from django.conf.urls import url , include
+from .views import  *
 # Post 
 
 urlpatterns = [
