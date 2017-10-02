@@ -7,10 +7,6 @@ holy moly
   
 - [ ]  followers / following 
   
-- [ ] 
-  
-- [ ] 
-
 #home
 
 - [ ]  according to user / followers  
@@ -21,7 +17,6 @@ holy moly
   
 - [ ]  infinite scroll downn
   
-
 ###posts 
 
 - [ ]  like button / favourites
@@ -38,10 +33,6 @@ holy moly
   
 - [ ]  able to connect with fb / twitter 
   
-- [ ]  
-  
-- [ ] 
-
 #pages
 - [X]  register /log in | Done
 
@@ -49,4 +40,3 @@ holy moly
 
 - [X]  home | Done
 
-- [ ]  
