@@ -3,23 +3,23 @@ holy moly
 
 #user 
 
-	- [X]  register / log in / log out | Done
+- [X]  register / log in / log out | Done
   
-	- [ ]  followers / following 
+- [ ]  followers / following 
   
-	- [ ] 
+- [ ] 
   
-	- [ ] 
+- [ ] 
 
 #home
 
-	- [ ]  according to user / followers  
+- [ ]  according to user / followers  
  
-	- [X]  grid | Done
+- [X]  grid | Done
   
-	- [ ]  hover : comments / likes / seen
+- [ ]  hover : comments / likes / seen
   
-	- [ ]  infinite scroll downn
+- [ ]  infinite scroll downn
   
 
 ###posts 
@@ -34,20 +34,19 @@ holy moly
 
 #not user procedure
 
-	- [X]  direct to a register page 
+- [X]  direct to a register page 
   
-	- [ ]  able to connect with fb / twitter 
+- [ ]  able to connect with fb / twitter 
   
-	- [ ]  
+- [ ]  
   
-	- [ ] 
+- [ ] 
 
 #pages
+- [X]  register /log in | Done
 
-	- [X]  register /log in | Done
-  
-	- [ ]  profile / settings / your own posts 
-  
-	- [X]  home | Done
-  
-	- [ ]  
+- [ ]  profile / settings / your own posts 
+
+- [X]  home | Done
+
+- [ ]  
