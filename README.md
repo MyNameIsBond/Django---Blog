@@ -24,13 +24,13 @@ holy moly
 
 ###posts 
 
-	- [ ]  like button / favourites
+- [ ]  like button / favourites
   
-	- [ ]  comments / face / twitter
+- [ ]  comments / face / twitter
   
-	- [ ]  share
+- [ ]  share
   
-	- [ ]  at the end of the post carry on another post or arrows 
+- [ ]  at the end of the post carry on another post or arrows 
 
 #not user procedure
 
