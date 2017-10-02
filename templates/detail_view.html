@@ -21,8 +21,8 @@
                         <a class="float-right" href="{% url 'posts:delete' instance.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
                         <hr>
                     </div>
-                </table>       
-                <h4>{{instance.post.user}}</h4>
+                </table>      
+                <h4>{{request.user}}</h4>
             </div>
     </body>
     </html>
