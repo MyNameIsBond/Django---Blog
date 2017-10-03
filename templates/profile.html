@@ -17,13 +17,16 @@
     <h3> {{hello}} </h3>
     <h3> {{world}} </h3>
     <ul>
-        <li> {{request.user}} </li>
-        <li> {{request.user.email}} </li>
-        <li> {{request.user.first_name}} </li>
-        <li> {{request.user.last_name}} </li>
-        <li><a href="{% url "account:edit" %}">edit profile</a></li>
-        <li><a href="{% url "account:edit-password" %}">edit password</a></li>
+        <li><i  class="fa fa-user" aria-hidden="true">&nbsp;</i> {{request.user}} </li>
+        <li><i  class="fa fa-envelope" aria-hidden="true">&nbsp;</i> {{request.user.email}} </li>
+        <li><i  class="fa fa-info-circle" aria-hidden="true">&nbsp;</i> {{request.user.first_name}} </li>
+        <li><i  class="fa fa-info-circle" aria-hidden="true">&nbsp;</i> {{request.user.last_name}} </li>
+        <li><i  class="fa fa-pencil" aria-hidden="true">&nbsp;</i> <a href="{% url "account:edit" %}">edit profile</a></li>
+        <li><i  class="fa fa-lock" aria-hidden="true">&nbsp;</i> <a href="{% url "account:edit-password" %}">edit password</a></li>
     </ul>
 </div>
+<style>
+
+</style>
 </body>
 </html>

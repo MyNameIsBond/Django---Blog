@@ -7,18 +7,18 @@
         {% if messages %}
         <ul class="messages alert alert-success">
             {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><i class="fa fa-check" aria-hidden="true"></i>{{ message }}</li>
             {% endfor %}
         </ul>
         {% endif %}      
         <div class = "container jumbotron">           
                 <table>
-                    <h1>{{instance.title}}</h1><p><small> {{instance.pub_date}} | {{instance.pub_date | timesince}}</small></p><br>
+                    <h1>{{instance.title}}</h1><p><small><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i> {{instance.pub_date}} | {{instance.pub_date | timesince}}</small></p><br>
                     <p>{{instance.post | linebreaks }}</p><br> 
                     <hr>
                     <div class = "container">
-                        <a  href="{% url 'posts:update' instance.id %}"><button type="button" class="btn btn-primary">Edit</button></a>
-                        <a class="float-right" href="{% url 'posts:delete' instance.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+                        <a  href="{% url 'posts:update' instance.id %}"><button type="button" class="btn btn-primary"><i class="fa fa-pencil" style="color:white" aria-hidden="true">&nbsp;</i>Edit</button></a>
+                        <a class="float-right" href="{% url 'posts:delete' instance.id %}"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o" style="color:white" aria-hidden="true">&nbsp;</i>Delete</button></a>
                         <hr>
                     </div>
                 </table>      
