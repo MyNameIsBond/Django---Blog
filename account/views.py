@@ -32,7 +32,7 @@ def log_in(request):
         user = authenticate(username=username, password=password)
         login (request, user)
         print(user)
-        messages.success(request,"%s, have logged in." %request.user)
+        messages.success(request,"%s, has logged in." %request.user)
         return redirect( "base" )
     return render (request, "log_in.html", content)
 
