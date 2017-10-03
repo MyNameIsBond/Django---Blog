@@ -8,7 +8,7 @@
             {% if messages %}
             <ul class="messages alert alert-success">
                 {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><i class="fa fa-check" aria-hidden="true">&nbsp;</i>{{ message }}</li>
                 {% endfor %}
             </ul>
             {% endif %}
@@ -21,8 +21,8 @@
         <li><i  class="fa fa-envelope" aria-hidden="true">&nbsp;</i> {{request.user.email}} </li>
         <li><i  class="fa fa-info-circle" aria-hidden="true">&nbsp;</i> {{request.user.first_name}} </li>
         <li><i  class="fa fa-info-circle" aria-hidden="true">&nbsp;</i> {{request.user.last_name}} </li>
-        <li><i  class="fa fa-pencil" aria-hidden="true">&nbsp;</i> <a href="{% url "account:edit" %}">edit profile</a></li>
-        <li><i  class="fa fa-lock" aria-hidden="true">&nbsp;</i> <a href="{% url "account:edit-password" %}">edit password</a></li>
+        <li><a href="{% url "account:edit" %}"><i  class="fa fa-pencil" aria-hidden="true">&nbsp;</i> edit profile</a></li>
+        <li><a href="{% url "account:edit-password" %}"><i  class="fa fa-lock" aria-hidden="true">&nbsp;</i> edit password</a></li>
     </ul>
 </div>
 <style>
