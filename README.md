@@ -1,13 +1,12 @@
 <h1>A Django based Blog.</h1> 
-holy moly
 
-#user 
+<h3>user</h3> 
 
 - [X]  register / log in / log out | Done
   
 - [ ]  followers / following 
   
-#home
+<h3>Home</h3>
 
 - [ ]  according to user / followers  
  
@@ -17,7 +16,7 @@ holy moly
   
 - [ ]  infinite scroll downn
   
-###posts 
+<h3>Posts</h3> 
 
 - [ ]  like button / favourites
   
@@ -27,13 +26,13 @@ holy moly
   
 - [ ]  at the end of the post carry on another post or arrows 
 
-#not user procedure
+<h3>Not user procedure</h3>
 
 - [X]  direct to a register page 
   
 - [ ]  able to connect with fb / twitter 
   
-#pages
+<h3>  Pages   </h3>
 - [X]  register /log in | Done
 
 - [ ]  profile / settings / your own posts 
