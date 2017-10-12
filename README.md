@@ -1,4 +1,4 @@
-#A Django based Blog. 
+<h1>A Django based Blog.</h1> 
 holy moly
 
 #user 
