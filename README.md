@@ -32,7 +32,8 @@
   
 - [ ]  able to connect with fb / twitter 
   
-<h3>  Pages   </h3>
+<h3>Pages</h3>
+
 - [X]  register /log in | Done
 
 - [ ]  profile / settings / your own posts 
