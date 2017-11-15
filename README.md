@@ -14,7 +14,7 @@
   
 - [ ]  hover : comments / likes / seen
   
-- [ ]  infinite scroll downn
+- [X]  infinite scroll downn
   
 <h3>Post</h3> <small>Page</small>
 
