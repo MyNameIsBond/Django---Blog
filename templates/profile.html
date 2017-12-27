@@ -14,8 +14,6 @@
             {% endif %}
 <div class="container jumbotron">
 
-    <h3> {{hello}} </h3>
-    <h3> {{world}} </h3>
     <ul>
         <li><i  class="fa fa-user" aria-hidden="true">&nbsp;</i> {{request.user}} </li>
         <li><i  class="fa fa-envelope" aria-hidden="true">&nbsp;</i> {{request.user.email}} </li>
@@ -24,6 +22,23 @@
         <li><a href="{% url "account:edit" %}"><i  class="fa fa-pencil" aria-hidden="true">&nbsp;</i> edit profile</a></li>
         <li><a href="{% url "account:edit-password" %}"><i  class="fa fa-lock" aria-hidden="true">&nbsp;</i> edit password</a></li>
     </ul>
+
+    <div class="container jumbotron">
+    {% for obj in user_post %}
+                <div class=" card">
+                        <div class="card-body ">
+                          <h4 class="card-title" title="{{obj.title}}"><a href="{{obj.get_absolute_url}}">{{obj.title}}</a></h4>
+                          <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p><hr>
+                          <p class="card-text "><small class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date}} | {{obj.pub_date  | timesince}} <br>
+                            <i class="fa fa-comments" aria-hidden="true">&nbsp;</i> 2
+                            <i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i> 12
+                            <i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i> 23
+                        </small>
+                        </div>
+                </div>
+    {% endfor %}        
+    </div>
+
 </div>
 <style>
 

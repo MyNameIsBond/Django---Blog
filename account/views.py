@@ -1,6 +1,7 @@
 from django.shortcuts           import render , redirect
 from django.http                import HttpResponse
 from django.contrib.auth.forms  import (UserCreationForm ,PasswordChangeForm, UserChangeForm)
+from posts.models                import Posts
 from django.contrib             import messages
 from django.contrib.auth        import (authenticate,
                                         update_session_auth_hash,
@@ -8,13 +9,16 @@ from django.contrib.auth        import (authenticate,
                                         login,
                                         logout,)
 from .forms                     import Log_in_form,UserRegisterForm,EditProfile
-# ---------------------------- >Profile View< ----------------------------#
+#---------------------------- >Profile View< ----------------------------#
 def profile(request):
-    world = "HEEEEEEEY!"
-    content = {
-        "hello" : "Hello world",
-        "world" : world,
+
+    # user_post = request.user.post.all()
+    user_post = Posts.objects.filter(user=request.user)
+
+    content   = {
+        "user_post" : user_post,
     }
+
     return render (request, "profile.html", content)
 
 
@@ -34,7 +38,8 @@ def log_in(request):
         print(user)
         messages.success(request,"%s, has logged in." %request.user)
         return redirect( "base" )
-    return render (request, "log_in.html", content)
+    else:
+        return render (request, "log_in.html", content)
 
 def log_out(request):
     logout(request)

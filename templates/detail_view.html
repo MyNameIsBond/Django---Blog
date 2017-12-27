@@ -16,13 +16,15 @@
                     <h1>{{instance.title}}</h1><p><small><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i> {{instance.pub_date}} | {{instance.pub_date | timesince}}</small></p><br>
                     <p>{{instance.post | linebreaks }}</p><br> 
                     <hr>
+                    {% if instance.user == request.user %}
                     <div class = "container">
                         <a  href="{% url 'posts:update' instance.id %}"><button type="button" class="btn btn-primary"><i class="fa fa-pencil" style="color:white" aria-hidden="true">&nbsp;</i>Edit</button></a>
                         <a class="float-right" href="{% url 'posts:delete' instance.id %}"><button type="button" class="btn btn-danger"><i class="fa fa-trash-o" style="color:white" aria-hidden="true">&nbsp;</i>Delete</button></a>
                         <hr>
                     </div>
+                    {% endif %}
                 </table>      
-                <h4>{{request.user}}</h4>
+                <h4>Written by: {{instance.user}}</h4>
             </div>
     </body>
     </html>

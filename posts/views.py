@@ -9,26 +9,34 @@ from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
 
 
 def home(request):
+
     if 'search' in request.GET:
         search = request.GET['search']
+
         if not search:
             posts = Posts.objects.none()
             return render(request,"search.html",{"posts":posts,"query":search})
         else:
             posts = Posts.objects.filter(title__icontains=search)
             return render(request,"search.html",{"posts":posts,"query":search})
+
     queryset  = Posts.objects.all()
     #----------- Pagination -----------
     paginator = Paginator(queryset, 10) # Show 10 contacts per page 
     page      = request.GET.get('page')
+
     try:
         queryset = paginator.page(page)
+
     except PageNotAnInteger: 
         queryset = paginator.page(1)
+
     except EmptyPage:
         queryset = paginator.page(paginator.num_pages)            
-    if request.user.is_authenticated():
-        hello = { "objectlist" : queryset,}
+
+    if not request.user.is_authenticated:
+        return redirect("account:log_in")
+
     else:
         hello = { "objectlist" : queryset,}
 
@@ -46,11 +54,13 @@ def detail(request, id):
     return render(request,"detail_view.html", context)
 
 # >--------------------------- Post's Action -----------------------------------<
+
 def create_post(request):
     """ This creates post """
     form = PostForm(request.POST or None)
     if form.is_valid():
         instance = form.save(commit=False)
+        instance.user = request.user
         instance.save()
         messages.success(request,"Post has been Created")
         return HttpResponseRedirect(instance.get_absolute_url())
@@ -68,6 +78,7 @@ def update_post(request, id=None):
     form = PostForm(request.POST or None, instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
+
         instance.save()
         messages.success(request,"Post has been updated")
         return HttpResponseRedirect(instance.get_absolute_url())
@@ -81,7 +92,7 @@ def update_post(request, id=None):
 def delete_post (request, id=None):
     instance = get_object_or_404(Posts, id = id)
     instance.delete()
-    messages.success(request," Post has been deleted")
+    messages.success(request,"Post has been deleted")
     return redirect("base")
 
 #----------------------------------- Search -----------------------------------#

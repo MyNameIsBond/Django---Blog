@@ -1,11 +1,16 @@
-from django.conf.urls import url , include
-from .views import  *
-# Post 
+from django.urls 	  import path , include
+from .views 		  import  *
+
+
+app_name="posts"
 
 urlpatterns = [
-    url(r'^(?P<id>\d+)/edit/$', update_post, name = "update"),    
-    url(r'^(?P<id>\d+)/detail/$', detail, name="detail"),
-    url(r'^(?P<id>\d+)/delete/$', delete_post, name="delete"),
-    url(r'^create/$', create_post, name="create"),
-    url(r'^search/$', search, name="search"),
+    path('<int:id>/edit/', 	update_post, 	name="update"),    
+    path('<int:id>/detail/', 	detail, 		name="detail"),
+    path('<int:id>/delete/', 	delete_post, 	name="delete"),
+    path('create/', 				create_post, 	name="create"),
+    path('search/', 				search, 		name="search"),
+
 ]
+    # url(r'^articles/(?P<year>[0-9]{4})/$', 	views.year_archive),
+	# path('articles/<int:year>/', 			views.year_archive),

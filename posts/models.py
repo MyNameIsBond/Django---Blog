@@ -1,5 +1,5 @@
 from django.db                  import models
-from django.core.urlresolvers   import reverse
+from django.urls                import reverse
 from account.models             import Profile
 from django.contrib.auth.models import User
 from django.conf                import settings
@@ -7,7 +7,7 @@ from django.conf                import settings
 
 
 class Posts(models.Model):
-    # user     =   models.ForeignKey(User)
+    user     =   models.ForeignKey(settings.AUTH_USER_MODEL,default=1,on_delete=models.CASCADE)   
     title    =   models.CharField(max_length=30, blank=False, null=True)
     post     =   models.TextField()
     pub_date =   models.DateField(null=True,auto_now_add=True)
