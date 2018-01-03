@@ -11,5 +11,6 @@ class PostForm(forms.ModelForm):
 
         fields = [
             "title",
-            "post"
+            "post" ,
+            "image"
         ]

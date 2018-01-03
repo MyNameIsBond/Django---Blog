@@ -3,9 +3,10 @@ from .models import Profile
 
 
 # Register your models here.
+
 class UserAdmin(admin.ModelAdmin):
-    list_display = ("user", "bio", "location" , "email" )
-    search_fields = ("user", "location", "email" )
+    list_display = ("user", "bio", "location" )
+    search_fields = ("user", "location" )
 
 
 

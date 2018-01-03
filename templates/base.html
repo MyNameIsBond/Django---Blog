@@ -18,8 +18,12 @@
         <div class="container jumbotron infinite-container">               
             <div class="card-columns infinite-item ">
                 {% for obj in objectlist  %}  
-                <div class=" card">
+                {% if obj.user == request.user %}
+                <div class=" card" style="color:white; background-color: #333; border-color: #333;">
                         <div class="card-body ">
+                            {%if obj.image%}
+                            <img src="{{ obj.image.url }}" class="img-fluid" alt="Responsive image">
+                            {%endif%}
                           <h4 class="card-title" title="{{obj.title}}"><a href="{{obj.get_absolute_url}}">{{obj.title}}</a></h4>
                           <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p><hr>
                           <p class="card-text "><small class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date}} | {{obj.pub_date  | timesince}} <br>
@@ -29,6 +33,22 @@
                         </small>
                         </div>
                 </div>             
+                {% else %}
+                <div class=" card">
+                        <div class="card-body ">
+                            {%if obj.image%}
+                            <img src="{{ obj.image.url }}" class="img-fluid" alt="Responsive image">
+                            {%endif%}
+                          <h4 class="card-title" title="{{obj.title}}"><a href="{{obj.get_absolute_url}}">{{obj.title}}</a></h4>
+                          <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p><hr>
+                          <p class="card-text "><small class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date}} | {{obj.pub_date  | timesince}} <br>
+                            <i class="fa fa-comments" aria-hidden="true">&nbsp;</i> 2
+                            <i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i> 12
+                            <i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i> 23<p>by {{obj.user}}</p>  
+                        </small></p>
+                        </div>
+                </div>             
+                    {% endif %}
                     {% endfor %}
             </div>
                 {% if objectlist.has_next %}

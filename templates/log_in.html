@@ -13,6 +13,6 @@
         <hr>
         {% csrf_token %}
         {{form | crispy }}
-        <input style="cursor: pointer;" class="btn btn-primary" type="submit" value="{{title}}">
+        <input style="cursor: pointer;" enctype="multipart/form-data" class="btn btn-primary" type="submit" value="{{title}}">
     </form>
 </div>

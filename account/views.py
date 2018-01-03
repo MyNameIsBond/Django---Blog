@@ -1,26 +1,29 @@
-from django.shortcuts           import render , redirect
-from django.http                import HttpResponse
+from django.urls                import reverse
+from django.shortcuts           import render , redirect, get_object_or_404
+from django.http                import HttpResponse , HttpResponseRedirect
 from django.contrib.auth.forms  import (UserCreationForm ,PasswordChangeForm, UserChangeForm)
-from posts.models                import Posts
+from posts.models               import Posts
+from .models                    import Profile
 from django.contrib             import messages
 from django.contrib.auth        import (authenticate,
                                         update_session_auth_hash,
                                         get_user_model,
                                         login,
                                         logout,)
-from .forms                     import Log_in_form,UserRegisterForm,EditProfile
+from .forms                     import Log_in_form,UserRegisterForm,EditProfile,Edit_Profile
 #---------------------------- >Profile View< ----------------------------#
 def profile(request):
 
-    # user_post = request.user.post.all()
     user_post = Posts.objects.filter(user=request.user)
+    profile   = Profile.objects.filter(user=request.user)
 
     content   = {
         "user_post" : user_post,
+        "profile" : profile,
     }
 
     return render (request, "profile.html", content)
-
+    
 
 # -------------------------- >Log in , Log out< --------------------------#
 def log_in(request):
@@ -68,36 +71,80 @@ def register(request):
 
 def edit_password(request):
     content = {"title": "%s, Change Password" %request.user}
+
     if request.method == "POST":
         form = PasswordChangeForm(data=request.POST, user=request.user)
+
         if form.is_valid():
             messages.success(request,"Your password, %s, have been saved." %request.user)
             form.save()
             update_session_auth_hash(request,form.user)
             return redirect("account:profile")
+
         else:
             messages.error(request,"Something went wrong, try again.")
             redirect("edit.html")
+
     else:
         form = PasswordChangeForm(user=request.user)
         content = {"form":form, "title":"Change Password"}
         return render(request,"edit.html",content)
+
     return render(request,"edit.html")
-                
 
 def edit_profile(request):
     content = { "title": "Change Profile" }
+
     if request.method == "POST":
-        form = EditProfile(request.POST, instance=request.user)
+        form = EditProfile(request.POST or None,request.FILES or None,instance=request.user)
+
         if form.is_valid():
-            messages.success(request,"Your changes, %s, have been saved." %request.user)
             form.save()
-            return redirect("account:profile")
-        else:
             messages.success(request,"Your changes, %s, have been saved." %request.user)
+            return redirect("account:profile")
+
+        else:
+            messages.success(request,"Your changes, %s, have not been saved." %request.user)
+            return redirect("account:edit")
             
     else:
         form = EditProfile(instance=request.user)
         content = {"form":form, "title": "Edit Profile"}
         return render(request, "edit.html",content)
+
+    return render(request, "edit.html")
+
+
+
+
+
+
+#------------------------------------No 2----------------------------------
+
+def edit_prof(request):
+    profile   = Profile.objects.filter(user=request.user)
+
+    if request.method == "POST":
+
+        instance = get_object_or_404(profile)
+        form     = Edit_Profile(request.POST or None, request.FILES or None,instance=instance)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Your changes, %s, have been saved." %request.user)
+
+            return redirect("account:profile")
+
+        else:
+            messages.error(request,"Your changes, %s, have  not been saved." %request.user)
+            return redirect("account:profile")
+
+    else:
+
+        instance = get_object_or_404(profile)
+        form = Edit_Profile(request.POST or None,request.FILES or None,instance=instance)
+
+        content = {"form":form, "title": "Edit Profile"}
+        return render(request, "edit.html",content)
+
     return render(request, "edit.html")

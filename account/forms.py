@@ -1,6 +1,7 @@
 from django                     import forms
 from django.contrib.auth.forms  import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
+from .models                    import Profile
 from django.contrib.auth        import (authenticate,
                                          get_user_model,
                                          login,
@@ -52,6 +53,7 @@ class UserRegisterForm(UserCreationForm):
         return email
 
 class EditProfile(UserChangeForm):
+
     class Meta:
         model = User
         fields = (
@@ -59,4 +61,19 @@ class EditProfile(UserChangeForm):
             "first_name",
             "last_name",
             "password",
-            "email",)
+            "email",
+            )
+        
+class Edit_Profile(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = (
+            "bio",
+            "location",
+            "birth_date",
+            "prof_image",
+            )
+
+
+

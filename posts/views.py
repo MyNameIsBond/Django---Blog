@@ -7,7 +7,6 @@ from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
 
 
 
-
 def home(request):
 
     if 'search' in request.GET:
@@ -42,26 +41,28 @@ def home(request):
 
     return render (request,"index.html",hello)
 
-def detail(request, id):
+def detail(request, slug):
     """ Post Preview """ 
-    instance = get_object_or_404(Posts, id=id)
+    
+    instance = get_object_or_404(Posts, slug=slug)
     title = "Detail View"
+
     context  = {
         "title" : instance.title,
-        "instance" : instance
-    }
+        "instance" : instance}
 
     return render(request,"detail_view.html", context)
 
 # >--------------------------- Post's Action -----------------------------------<
 
+
 def create_post(request):
     """ This creates post """
-    form = PostForm(request.POST or None)
+    form = PostForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         instance = form.save(commit=False)
         instance.user = request.user
-        instance.save()
+        instance.save() 
         messages.success(request,"Post has been Created")
         return HttpResponseRedirect(instance.get_absolute_url())
     else:
@@ -71,26 +72,25 @@ def create_post(request):
         return render(request, "create_post.html", context)
 
 
-def update_post(request, id=None):
+def update_post(request, slug=None):
     """ this updates an already created post """
 
-    instance = get_object_or_404(Posts, id=id)
-    form = PostForm(request.POST or None, instance=instance)
+    instance = get_object_or_404(Posts, slug=slug)
+    form = PostForm(request.POST or None,request.FILES or None,instance=instance)
     if form.is_valid():
         instance = form.save(commit=False)
-
         instance.save()
         messages.success(request,"Post has been updated")
         return HttpResponseRedirect(instance.get_absolute_url())
     context = {
-        "title" : instance.title,
-        "instance" : instance,
-        "form" : form
+        "title"     :instance.title,
+        "instance"  :instance,
+        "form"      :form
     }
     return render(request, "create_post.html", context)
 
-def delete_post (request, id=None):
-    instance = get_object_or_404(Posts, id = id)
+def delete_post (request, slug=None):
+    instance = get_object_or_404(Posts, slug = slug)
     instance.delete()
     messages.success(request,"Post has been deleted")
     return redirect("base")
