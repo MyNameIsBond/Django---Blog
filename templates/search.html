@@ -21,12 +21,17 @@
           </tr>
         </thead>
         
-        {% for post in posts  %}
+        {% for post in posts|slice:":10" %}
         
         <tbody>
             <tr>
                 <th scope="row"> {{ forloop.counter }} </th>
-                <td><a href="{{ post.get_absolute_url}}">{{post.title}}</a></td>
+                <td><a href="{{ post.get_absolute_url }}">
+                    {% if post.image %}
+                     <img src="{{post.image.url}}" width="15px" height="15px" alt="Responsive image" class="img-circle">
+                    {% endif %}
+                {{post.title}}</a></td>
+
                 <td><a href="{{ post.get_absolute_url}}">{{post.post| truncatechars:10}}</a></td>
                 <td><a href="{{ post.get_absolute_url}}">{{post.pub_date}}</a></td>
             </tr>
@@ -34,3 +39,9 @@
         {% endfor %}
     </table>
     {% endif %}
+
+    <style type="text/css">
+        a {
+            color: white;
+        }
+    </style>

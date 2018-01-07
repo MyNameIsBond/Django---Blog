@@ -8,8 +8,8 @@ urlpatterns = [
 
     path('admin/',  admin.site.urls,name="admin"),
     path('home/',			   home,name="base"),
-    path('',include('account.urls', namespace="account")),
-    path('',include('posts.urls',   namespace="posts")),
+    path('',include('account.urls' ,namespace="account")),
+    path('',include('posts.urls'   ,namespace="posts")),
 
 ]
 

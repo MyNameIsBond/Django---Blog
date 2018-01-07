@@ -1,6 +1,7 @@
 from django.shortcuts       import render , get_object_or_404 , redirect
 from .forms                 import PostForm
 from .models                import Posts
+from account.models                import Profile
 from django.http            import HttpResponseRedirect 
 from django.contrib         import messages
 from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger
@@ -20,6 +21,7 @@ def home(request):
             return render(request,"search.html",{"posts":posts,"query":search})
 
     queryset  = Posts.objects.all()
+    profile   = Profile.objects.all()
     #----------- Pagination -----------
     paginator = Paginator(queryset, 10) # Show 10 contacts per page 
     page      = request.GET.get('page')
@@ -37,7 +39,8 @@ def home(request):
         return redirect("account:log_in")
 
     else:
-        hello = { "objectlist" : queryset,}
+        hello = { "objectlist" : queryset,
+                   "profile": profile }
 
     return render (request,"index.html",hello)
 

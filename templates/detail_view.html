@@ -35,7 +35,18 @@
 
                     {% endif %}
                 </table>      
-                <h4>Written by: {{instance.user}}</h4>
+                {% if instance.image %}
+                <h4>
+                by 
+                <img src="{{instance.user.profile.prof_image.url}}" class="img-cirlce" width="30px" height="30px" alt="Responsive image"> {{instance.user}}
+                </h4>
+                {%endif%}
             </div>
     </body>
+    <style type="text/css">
+        .img-cirlce{
+            border-radius: 50%;
+
+        }
+    </style>
     </html>
