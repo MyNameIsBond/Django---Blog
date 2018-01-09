@@ -58,21 +58,22 @@
       <hr class="hr">
           
               {% for obj in user_post %}
-                <div class="card card-inverse">
-                            {% if obj.image%}
-                                <img class="card-img" src="{{obj.image.url}}" alt="Card Image">
-                            {% endif %}
-                        <div class="card-img-overlay">
-                          <h4 class="card-title" title="{{obj.title}}"><a href="{{obj.get_absolute_url}}">{{obj.title}}</a></h4>
-                          <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p>
-                          <p class="card-text "><small class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date}} | {{obj.pub_date  | timesince}} <br>
-                            <i class="fa fa-comments" aria-hidden="true">&nbsp;</i> 2
-                            <i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i> 12
-                            <i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i> 23
-                        </p>
-                        </small>
-                        </div>
-                </div>
+              <div class="card card-inverse" style="padding: 0px;">
+                  {% if obj.image%}
+                  
+                  <img class="card-img" id="img_in_the_card" src="{{obj.image.url}}" alt="Card Image" >
+                  {% endif %}
+                                    <div class="card-img-overlay">
+                                        <h4 class="card-title"  title="{{obj.title}}"><a href="{{obj.get_absolute_url}}" style="color:white;">{{obj.title}}</a></h4>
+                                        <p class="card-text" style="color:white;" >{{obj.post | linebreaks | truncatechars:100}}</p>
+                                        <p class="card-text "><small class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date}} | {{obj.pub_date  | timesince}} <br>
+                                            <i class="fa fa-comments" aria-hidden="true">&nbsp;</i> 2
+                                            <i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i> 12
+                                            <i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i> 23
+                                        </p>
+                                    </small>
+                                </div>
+                            </div>
              {% endfor %} 
     </div>
     <div id="menu1" class="container tab-pane fade"><br>
@@ -160,11 +161,13 @@
 <style>
 /* USER PROFILE PAGE */
 
-img {
-    padding: 0px;
-    margin: 0px;
-    border-radius: 20px;
+#img_in_the_card {
+    filter: brightness(60%);
 }
+p{
+    color: rgb(179, 177, 177);
+}
+
 .hr {
     height: 1px;
     background-color: grey;
@@ -241,7 +244,7 @@ img {
     padding:0 5px;
     font-size: 20px;
     line-height: 1;
-    color: #262626;
+    color: #ffffff;
     background-color: rgba(255, 255, 255, 0.1);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;

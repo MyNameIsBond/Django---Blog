@@ -10,9 +10,11 @@
 {% block list %}
                         {% if messages %}
                             <ul class="messages alert alert-danger">
+
                                 {% for message in messages %}
-                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp;</i>{{ message }}</li>
+                                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}><i class="fa fa-exclamation-triangle" aria-hidden="true">&nbsp;</i>{{ message }}</li>
                                 {% endfor %}
+                                
                             </ul>
                         {% endif %}
 
@@ -22,29 +24,36 @@
                 {% if obj.user == request.user %}
                         <div class=" card">
                             {% if obj.image %}
-                            <img class="card-img-top" src="{{ obj.image.url }}"  alt="Card image cap">
+                            <a href=" {{obj.get_absolute_url}} ">
+                                <img class="card-img-top" src="{{ obj.image.url }}"  alt="Card image cap">
+                            </a>
                             {% endif %}
                         <div class="card-body" style="color:white; background-color: #333; border-color: #333;" >
                           <h4 class="card-title" title="{{obj.title}}"><a href="{{obj.get_absolute_url}}" style="color:white;" >{{obj.title}}</a></h4>
                           <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p><hr>
-                          <p class="card-text "><small style="color: red; class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date  | timesince}} ago</small> <br>
+                          <p class="card-text "><small style="color: red;" class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date  | timesince}} ago</small> <br>
                             <small>
                             <i class="fa fa-comments" aria-hidden="true">&nbsp;</i> 2
                             <i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i> 12
-                            <i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i> 23<p><img src="{{obj.user.profile.prof_image.url}}" width="20px" height="20px" class="img-circle" alt="Responsive image"> {{obj.user}}
+                            <i class="fa fa-share-alt" aria-hidden="true">&nbsp;</i> 23<p>
+                                {% if obj.user.profile.prof_image %}
+                                <img src="{{obj.user.profile.prof_image.url}}" width="20px" height="20px" class="img-circle" alt="Responsive image"> {{obj.user}}
+                                {% endif %}
                             </p>  
                         </small></p>
                         </div>
                 </div>                       
                 {% else %}
                 <div class=" card">
-                            {% if obj.image %}
+                        {% if obj.image %}
+                        <a href=" {{obj.get_absolute_url}} ">
                             <img class="card-img-top" src="{{ obj.image.url }}"  alt="Card image cap">
-                            {% endif %}
+                        </a>
+                        {% endif %}
                         <div class="card-body ">
                           <h4 class="card-title" title="{{obj.title}}"><a href="{{obj.get_absolute_url}}" style="color:black;" >{{obj.title}}</a></h4>
                           <p class="card-text">{{obj.post | linebreaks | truncatechars:100}}</p><hr>
-                          <p class="card-text "><small style="color: red; class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date  | timesince}} ago</small><br>
+                          <p class="card-text "><small style="color: red;" class="text-muted"><i class="fa fa-calendar" aria-hidden="true">&nbsp;</i>{{obj.pub_date  | timesince}} ago</small><br>
                             <small>
                             <i class="fa fa-comments" aria-hidden="true">&nbsp;</i> 2
                             <i class="fa fa-thumbs-up" aria-hidden="true">&nbsp;</i> 12

@@ -47,6 +47,7 @@ def log_in(request):
 def log_out(request):
     logout(request)
     return redirect("base")
+
 def register(request):
     title = "Register"
     form = UserRegisterForm(request.POST or None)
@@ -113,9 +114,6 @@ def edit_profile(request):
         return render(request, "edit.html",content)
 
     return render(request, "edit.html")
-
-
-
 
 
 
