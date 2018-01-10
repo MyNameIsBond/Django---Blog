@@ -1,7 +1,7 @@
 from django.shortcuts       import render , get_object_or_404 , redirect
 from .forms                 import PostForm
 from .models                import Posts
-from account.models                import Profile
+from account.models         import Profile
 from django.http            import HttpResponseRedirect 
 from django.contrib         import messages
 from django.core.paginator  import Paginator, EmptyPage, PageNotAnInteger

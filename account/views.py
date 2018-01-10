@@ -12,18 +12,19 @@ from django.contrib.auth        import (authenticate,
                                         logout,)
 from .forms                     import Log_in_form,UserRegisterForm,EditProfile,Edit_Profile
 #---------------------------- >Profile View< ----------------------------#
-def profile(request):
-
-    user_post = Posts.objects.filter(user=request.user)
-    profile   = Profile.objects.filter(user=request.user)
+def profile(request,user_url):
+    
+    instance = get_object_or_404(Profile,user_url=user_url)
+    user_post = Posts.objects.filter(user=instance.user)
 
     content   = {
         "user_post" : user_post,
-        "profile" : profile,
+        "instance"  : instance,
     }
 
     return render (request, "profile.html", content)
     
+
 
 # -------------------------- >Log in , Log out< --------------------------#
 def log_in(request):
@@ -50,17 +51,22 @@ def log_out(request):
 
 def register(request):
     title = "Register"
+
     form = UserRegisterForm(request.POST or None)
     if form.is_valid():
         user     = form.save(commit=False)
         password = form.cleaned_data.get("password1")
         user.set_password(password)
         user.save()
+        instance.save()
         new_user = authenticate(username=user.username, password=password)
         login(request,new_user)
         messages.success(request,"Welcome, %s , enjoy." %request.user)
-        print(request.user)
-        return redirect("base")
+
+        return HttpResponseRedirect(instance.get_absolute_user())
+        # return redirect("base")
+
+
     content = {
         "title" : title ,
         "form" : form

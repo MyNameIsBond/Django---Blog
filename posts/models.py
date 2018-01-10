@@ -9,8 +9,11 @@ from django.contrib.auth.models import User
 def upload_location(instance,filename):
     return "%s/%s" %(instance.id,filename)
 
+
+
+
 class Posts(models.Model):
-    user     =   models.ForeignKey(settings.AUTH_USER_MODEL,default=1,on_delete=models.CASCADE)   
+    user         = models.ForeignKey(settings.AUTH_USER_MODEL,default=1,on_delete=models.CASCADE)   
     slug         = models.SlugField(unique=True)
     title        = models.CharField(max_length=60, blank=False, null=True)
     post         = models.TextField()
@@ -26,6 +29,7 @@ class Posts(models.Model):
     
     def __str__ (self):
         return u"%s %s" % (self.title, self.pub_date)
+
 
     def get_absolute_url(self):
         return reverse("posts:detail", kwargs= {"slug": self.slug})
