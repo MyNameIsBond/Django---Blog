@@ -3,6 +3,7 @@ from django.shortcuts           import render , redirect, get_object_or_404
 from django.http                import HttpResponse , HttpResponseRedirect
 from django.contrib.auth.forms  import (UserCreationForm ,PasswordChangeForm, UserChangeForm)
 from posts.models               import Posts
+from django.contrib.auth.models import User
 from .models                    import Profile
 from django.contrib             import messages
 from django.contrib.auth        import (authenticate,
@@ -12,17 +13,18 @@ from django.contrib.auth        import (authenticate,
                                         logout,)
 from .forms                     import Log_in_form,UserRegisterForm,EditProfile,Edit_Profile
 #---------------------------- >Profile View< ----------------------------#
-def profile(request,user_url):
+def profile(request,username):
     
-    instance = get_object_or_404(Profile,user_url=user_url)
-    user_post = Posts.objects.filter(user=instance.user)
+    instance  = User.objects.get(username=username)
+    user_post = Posts.objects.filter(user=request.user)
 
     content   = {
         "user_post" : user_post,
         "instance"  : instance,
     }
 
-    return render (request, "profile.html", content)
+    return HttpResponseRedirect(instance.get_user_url())
+    # return render (request, "profile.html", content)
     
 
 
@@ -62,9 +64,8 @@ def register(request):
         new_user = authenticate(username=user.username, password=password)
         login(request,new_user)
         messages.success(request,"Welcome, %s , enjoy." %request.user)
-
-        return HttpResponseRedirect(instance.get_absolute_user())
-        # return redirect("base")
+        
+        return redirect("base")
 
 
     content = {
