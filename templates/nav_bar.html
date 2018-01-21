@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span></button>
-      
+      {% for user_user in profile%}
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
@@ -32,12 +32,13 @@
                     {% endif %}
                     {{request.user}}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <p class="dropdown-item" >  <a href="{% url "account:profile.url"%}"><i  class="fa fa-user" aria-hidden="true">&nbsp;</i> Profile</a></p>
+                            <p class="dropdown-item" >  <a href="{% url "user_user.get_user_url"%}"><i  class="fa fa-user" aria-hidden="true">&nbsp;</i> Profile</a></p>
                             <p class="dropdown-item"> <a  href="{% url "account:log_out"%}"><i class="fa fa-sign-out" aria-hidden="true">&nbsp;</i> Log out</a></p>
                         </div>
                 {% else %}
                 <a class="" href="{% url "account:log_in" %}">Log in</a> | <a href="{% url "account:register" %}">Register</a>    
                 {% endif %}
+                {% endfor %}
                 </div>
             </div>
         </div>

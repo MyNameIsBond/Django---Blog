@@ -21,9 +21,9 @@ class Profile(models.Model):
     location    = models.CharField(max_length=30, blank=True)
     birth_date  = models.DateField(null=True, blank=True)
     prof_image  = models.ImageField(null=True, blank=True,
-                  upload_to=upload_location, 
-                  width_field="width_field",
-                  height_field="height_field")
+                    upload_to=upload_location,
+                    width_field="width_field",
+                    height_field="height_field")
     width_field  = models.IntegerField(default=0) 
     height_field = models.IntegerField(default=0)
 
@@ -31,10 +31,10 @@ class Profile(models.Model):
 
 
     def __str__(self):
-      return self.user.username
+      return self.user.user
 
     def get_user_url(self):
-      return reverse("account:profile", kwargs= {"username": self.user.username})
+      return reverse("account:profile", kwargs= {"user": self.user.user})
 
 
 

@@ -15,8 +15,9 @@ from .forms                     import Log_in_form,UserRegisterForm,EditProfile,
 #---------------------------- >Profile View< ----------------------------#
 def profile(request,username):
     
-    instance  = User.objects.get(username=username)
+    # instance  = User.objects.get(username=username)
     user_post = Posts.objects.filter(user=request.user)
+    instance = get_object_or_404(Profile, user=user)
 
     content   = {
         "user_post" : user_post,
