@@ -31,10 +31,10 @@ class Profile(models.Model):
 
 
     def __str__(self):
-      return self.user.user
+      return self.user.username
 
     def get_user_url(self):
-      return reverse("account:profile", kwargs= {"user": self.user.user})
+      return reverse("account:profile", kwargs= {"user": self.user.username})
 
 
 

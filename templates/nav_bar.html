@@ -32,7 +32,7 @@
                     {% endif %}
                     {{request.user}}</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <p class="dropdown-item" >  <a href="{% url "user_user.get_user_url"%}"><i  class="fa fa-user" aria-hidden="true">&nbsp;</i> Profile</a></p>
+                            <p class="dropdown-item" >  <a href="{% url "request.user.get_user_url"%}"><i  class="fa fa-user" aria-hidden="true">&nbsp;</i> Profile</a></p>
                             <p class="dropdown-item"> <a  href="{% url "account:log_out"%}"><i class="fa fa-sign-out" aria-hidden="true">&nbsp;</i> Log out</a></p>
                         </div>
                 {% else %}

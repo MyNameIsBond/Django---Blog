@@ -15,17 +15,16 @@ from .forms                     import Log_in_form,UserRegisterForm,EditProfile,
 #---------------------------- >Profile View< ----------------------------#
 def profile(request,username):
     
-    # instance  = User.objects.get(username=username)
-    user_post = Posts.objects.filter(user=request.user)
-    instance = get_object_or_404(Profile, user=user)
+    instance  = User.objects.get(username=username)
+    user_post = Posts.objects.filter(user=instance)
+    profile = get_object_or_404(Profile, user=instance)
 
     content   = {
-        "user_post" : user_post,
-        "instance"  : instance,
+        "profile"  : profile,
+        "user_post"  : user_post,
     }
 
-    return HttpResponseRedirect(instance.get_user_url())
-    # return render (request, "profile.html", content)
+    return render (request, "profile.html", content)
     
 
 
