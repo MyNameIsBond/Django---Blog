@@ -14,10 +14,10 @@ from django.contrib.auth        import (authenticate,
 from .forms                     import Log_in_form,UserRegisterForm,EditProfile,Edit_Profile
 #---------------------------- >Profile View< ----------------------------#
 def profile(request,username):
-    
-    instance  = User.objects.get(username=username)
-    user_post = Posts.objects.filter(user=instance)
-    profile = get_object_or_404(Profile, user=instance)
+
+    instance    = User.objects.get(username=username)
+    user_post   = Posts.objects.filter(user=instance)
+    profile     = get_object_or_404(Profile, user=instance)
 
     content   = {
         "profile"  : profile,
@@ -29,6 +29,7 @@ def profile(request,username):
 
 
 # -------------------------- >Log in , Log out< --------------------------#
+
 def log_in(request):
     title = "Login"
     form = Log_in_form(request.POST or None)
@@ -41,11 +42,12 @@ def log_in(request):
         password = form.cleaned_data.get("password")
         user = authenticate(username=username, password=password)
         login (request, user)
-        print(user)
+
         messages.success(request,"%s, has logged in." %request.user)
         return redirect( "base" )
     else:
         return render (request, "log_in.html", content)
+
 
 def log_out(request):
     logout(request)
