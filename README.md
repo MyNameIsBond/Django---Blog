@@ -8,7 +8,7 @@
   
 <h3>Home</h3><small>Page</small>
 
-- [ ]  according to user / followers  
+- [X]  according to user / followers  
  
 - [X]  grid | Done
   
@@ -36,7 +36,7 @@
 
 - [X]  register /log in | Done
 
-- [ ]  profile / settings / your own posts 
+- [X]  profile / settings / your own posts 
 
 - [X]  home | Done
 
